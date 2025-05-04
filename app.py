@@ -12,12 +12,12 @@ logger = logging.getLogger(__name__)
 load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = os.getenv('SECRET_KEY')
+app.secret_key = os.getenv('SECRET_KEY', 'default-secret-key-for-development')
 
 # Email configuration
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_SERVER'] = os.getenv('MAIL_SERVER', 'smtp.gmail.com')
+app.config['MAIL_PORT'] = int(os.getenv('MAIL_PORT', 587))
+app.config['MAIL_USE_TLS'] = os.getenv('MAIL_USE_TLS', 'True').lower() == 'true'
 app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
 app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
 app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_USERNAME')
@@ -44,11 +44,16 @@ def contact():
         email = request.form.get('email')
         message = request.form.get('message')
 
+        # Check if email configuration is available
+        if not all([app.config['MAIL_USERNAME'], app.config['MAIL_PASSWORD']]):
+            flash('Email service is currently unavailable. Please try again later.', 'error')
+            return redirect(url_for('contact'))
+
         try:
             # Send email to yourself
             msg = Message(
                 subject=f'New Contact Form Message from {name}',
-                recipients=[os.getenv('MAIL_USERNAME')],
+                recipients=[app.config['MAIL_USERNAME']],
                 body=f'''
                 Name: {name}
                 Email: {email}
@@ -76,14 +81,13 @@ def contact():
             return redirect(url_for('contact'))
 
         except Exception as e:
+            logger.error(f"Error sending email: {str(e)}")
             flash('There was an error sending your message. Please try again later.', 'error')
             return redirect(url_for('contact'))
 
     return render_template('contact.html')
 
-# This is required for Vercel
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)  # Set debug to False in production
 else:
-    # This is required for Vercel
     app = app 
