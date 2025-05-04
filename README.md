@@ -1,70 +1,83 @@
-# Getting Started with Create React App
+# Alharis Feysel's Portfolio Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, responsive portfolio website built with Flask and Tailwind CSS.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Responsive design
+- Modern UI with glass morphism effects
+- Mobile-friendly navigation
+- Smooth animations and transitions
+- Contact form functionality
 
-### `npm start`
+## Local Development
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clone the repository
+2. Create a virtual environment:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. Run the development server:
+   ```bash
+   flask run
+   ```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Deployment
 
-### `npm test`
+The website can be deployed on various platforms:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Render (Recommended)
 
-### `npm run build`
+1. Create a new Web Service on Render
+2. Connect your GitHub repository
+3. Set the following environment variables:
+   - `FLASK_APP=app.py`
+   - `FLASK_ENV=production`
+4. Deploy!
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Heroku
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Create a new app on Heroku
+2. Connect your GitHub repository
+3. Set the following environment variables:
+   - `FLASK_APP=app.py`
+   - `FLASK_ENV=production`
+4. Deploy!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Technologies Used
 
-### `npm run eject`
+- Flask
+- Tailwind CSS
+- Font Awesome
+- JavaScript
+- HTML5
+- CSS3
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Customization
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Personal Information
+- Update the content in each template file to reflect your personal information
+- Modify the `about.html` template to include your bio
+- Update the projects in `projects.html` to showcase your work
+- Add your own images to the `static/images` directory
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Styling
+- Colors can be modified in `static/css/style.css` by updating the CSS variables in the `:root` selector
+- Responsive breakpoints can be adjusted in the media queries
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Contact Form
+- The contact form in `contact.html` needs to be connected to a backend service
+- You can use services like EmailJS, Formspree, or implement your own email functionality
 
-## Learn More
+## Contributing
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Feel free to fork this project and customize it for your own use. If you find any bugs or have suggestions for improvements, please open an issue or submit a pull request.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## License
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is open source and available under the [MIT License](LICENSE). 
