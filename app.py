@@ -3,6 +3,7 @@ from flask_mail import Mail, Message
 import os
 from dotenv import load_dotenv
 import logging
+import requests
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
@@ -25,6 +26,16 @@ app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_USERNAME')
 # Initialize Flask-Mail
 mail = Mail(app)
 
+GITHUB_USERNAME = "Harisfeysel"  # TODO: Replace with your GitHub username
+
+def fetch_github_repos(username):
+    url = f"https://api.github.com/users/{username}/repos"
+    response = requests.get(url)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return []
+
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -35,7 +46,8 @@ def about():
 
 @app.route('/projects')
 def projects():
-    return render_template('projects.html')
+    repos = fetch_github_repos(GITHUB_USERNAME)
+    return render_template('projects.html', repos=repos)
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
